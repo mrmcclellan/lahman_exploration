@@ -1,0 +1,37 @@
+---
+title: "01_exploration"
+output: html_document
+date: "2025-04-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Install libraries
+```{r}
+
+library(tidyverse)
+
+```
+Read lahman database
+```{r}
+Teams <- read_csv("data/lahman_1871-2023_csv/Teams.csv")
+People <- read_csv("data/lahman_1871-2023_csv/People.csv")
+TeamsFranchises <- read_csv("data/lahman_1871-2023_csv/TeamsFranchises.csv")
+Parks <- read_csv("data/lahman_1871-2023_csv/Parks.csv")
+Batting <- read_csv("data/lahman_1871-2023_csv/Batting.csv")
+Pitching <- read_csv("data/lahman_1871-2023_csv/Pitching.csv")
+Fielding <- read_csv("data/lahman_1871-2023_csv/Fielding.csv")
+FieldingOF <- read_csv("data/lahman_1871-2023_csv/FieldingOF.csv")
+FieldingOFsplit <- read_csv("data/lahman_1871-2023_csv/FieldingOFsplit.csv")
+Appearances <- read_csv("data/lahman_1871-2023_csv/Appearances.csv")
+Managers <- read_csv("data/lahman_1871-2023_csv/Managers.csv")
+#... <- read_csv("data/lahman_1871-2023_csv/...")
+#... <- read_csv("data/lahman_1871-2023_csv/...")
+
+
+
+```
+
