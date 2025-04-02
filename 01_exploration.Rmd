@@ -35,3 +35,44 @@ Managers <- read_csv("data/lahman_1871-2023_csv/Managers.csv")
 
 ```
 
+Explore People table
+
+How many players with the given name "Bob" have ever played?
+List of Bobs, arrange by debut date. Showing ID, name, birth and death years, debut and finalgame.
+```{r}
+People |>
+  filter(nameFirst == "Bob") |>
+  arrange(debut, finalGame) |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear)
+  
+```
+
+Has there ever been a Bob Roberts?
+```{r}
+
+People |>
+  filter(nameFirst == "Bob" & str_detect(nameLast, "Robert")) |>
+    select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear)
+
+
+```
+
+How about a Bob Bob-something?
+```{r}
+
+People |>
+  filter(nameFirst == "Bob" & str_detect(nameLast, "Bob"))
+```
+
+Group Bobs by decade of debut
+
+```{r}
+People |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear) |>
+  filter(nameFirst == "Bob") |>
+  group_by(debut) |>
+  arrange(debut)
+  
+
+```
+
