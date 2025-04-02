@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-Install libraries
+Load libraries
 ```{r}
 
 library(tidyverse)
@@ -72,7 +72,57 @@ People |>
   filter(nameFirst == "Bob") |>
   group_by(debut) |>
   arrange(debut)
+
+```
+
+```{r}
+People |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear) |>
+  filter(nameFirst == "Bob") |>
+  group_by(debut) |>
+  arrange(debut) |>
+  filter(str_detect(debut, "1872"))
+```
+
+Split debut year into new column
+```{r}
+People |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear) |>
+  filter(nameFirst == "Bob") |>
+  arrange(debut) |>
+  separate(debut, sep="-", into=c("debut_yr", "debut_mo", "debut_day"))
   
 
+
+
+```
+
+Group by debut year
+```{r}
+Bob_debut_by_yr <- People |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear) |>
+  filter(nameFirst == "Bob") |>
+  arrange(debut) |>
+  separate(debut, sep="-", into=c("debut_yr", "debut_mo", "debut_day")) |>
+  group_by(debut_yr) |>
+  summarize(n=n())
+```
+
+Visualize Bob debuts by year
+```{r}
+People |>
+  select(playerID, nameFirst, nameLast, birthYear, debut, finalGame, deathYear) |>
+  filter(nameFirst == "Bob") |>
+  arrange(debut) |>
+  separate(debut, sep="-", into=c("debut_yr", "debut_mo", "debut_day")) |>
+  ggplot(aes(x = debut_yr)) +
+  geom_bar()
+
+```
+
+Arrange years by most Bob debuts
+```{r}
+Bob_debut_by_yr |>
+  arrange(desc(n))
 ```
 
